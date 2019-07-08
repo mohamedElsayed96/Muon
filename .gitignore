@@ -2,6 +2,7 @@ Modules/modules_dll/*
 */Modules/modules_dll/*
 */obj/*
 */bin/*
+bin/*
 */node_modules/*
 Erp/wwwroot/clientapp/*
 Erp/wwwroot/ProductManager/*

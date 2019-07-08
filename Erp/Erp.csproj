@@ -1,0 +1,123 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>    
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>.\..\bin\Debug\Erp.xml</DocumentationFile>
+    <OutputPath>.\..\bin\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\App\System.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\app\Test\test.component.html" />
+    <None Remove="ClientApp\app\Test\test.component.ts" />
+    <None Remove="ProductManager\app\shared\dataService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\app\accountingSystem.html" />
+    <Content Include="ClientApp\app\accountingSystem.ts" />
+    <Content Include="ClientApp\app\accounting\accounting.css" />
+    <Content Include="ClientApp\app\accounting\accounting.html" />
+    <Content Include="ClientApp\app\accounting\accounting.ts" />
+    <Content Include="ClientApp\app\app.component.html" />
+    <Content Include="ClientApp\app\login\login.component.html" />
+    <Content Include="ClientApp\app\login\login.component.ts" />
+    <Content Include="ClientApp\app\services\moduleList.component.css" />
+    <Content Include="ClientApp\app\services\moduleList.component.html" />
+    <Content Include="ClientApp\app\services\moduleList.component.ts" />
+    <Content Include="ClientApp\app\shared\dataService.ts" />
+    <Content Include="ClientApp\app\shared\module.ts" />
+    <Content Include="ClientApp\app\shared\order.ts" />
+    <Content Include="ClientApp\app\Test\test.component.html" />
+    <Content Include="ClientApp\app\Test\test.component.ts" />
+    <Content Include="ClientApp\assets\.gitkeep" />
+    <Content Include="ClientApp\browserslist" />
+    <Content Include="ClientApp\environments\environment.prod.ts" />
+    <Content Include="ClientApp\environments\environment.ts" />
+    <Content Include="ClientApp\favicon.ico" />
+    <Content Include="ClientApp\index.html" />
+    <Content Include="ClientApp\karma.conf.js" />
+    <Content Include="ClientApp\main.ts" />
+    <Content Include="ClientApp\polyfills.ts" />
+    <Content Include="ClientApp\styles.css" />
+    <Content Include="ClientApp\test.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+   
+    <PackageReference Include="MailKit" Version="2.2.0" />
+   
+    <PackageReference Include="Microsoft.AspNetCore.App" />    
+   
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+   
+    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="OdeToCode.UseNodeModules" Version="1.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\App\System.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\js\index.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="mysql_dll\libeay32.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="mysql_dll\libmysql.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="mysql_dll\mysqlcppconn8-1-vs14.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="mysql_dll\ssleay32.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\WorkFlows\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ProductManager\app\shared\dataService.ts" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy &quot;$(ProjectDir)mysql_dll\libmysql.dll&quot; &quot;$(ProjectDir)..\bin\$(Configuration)\netcoreapp2.2\libmysql.dll&quot;&#xD;&#xA;copy &quot;$(ProjectDir)mysql_dll\libeay32.dll&quot; &quot;$(ProjectDir)..\bin\$(Configuration)\netcoreapp2.2\libeay32.dll&quot;&#xD;&#xA;copy &quot;$(ProjectDir)mysql_dll\ssleay32.dll&quot; &quot;$(ProjectDir)..\bin\$(Configuration)\netcoreapp2.2\ssleay32.dll&quot;&#xD;&#xA;copy &quot;$(ProjectDir)mysql_dll\mysqlcppconn8-1-vs14.dll&quot; &quot;$(ProjectDir)..\bin\$(Configuration)\netcoreapp2.2\mysqlcppconn8-1-vs14.dll&quot;&#xD;&#xA;&#xD;&#xA;XCOPY &quot;$(ProjectDir)..\Modules\modules_dll&quot; &quot;$(ProjectDir)..\bin\$(Configuration)\netcoreapp2.2\Modules\&quot; /S /Y" />
+  </Target>
+
+</Project>

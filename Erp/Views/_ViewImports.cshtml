@@ -1,0 +1,18 @@
+﻿@using Erp.Controllers
+@addTagHelper  "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@using Erp.ViewModels
+@using Erp.Data
+@using Erp.Data.Entities
+@using Microsoft.AspNetCore.Identity
+@using System.Linq
+@using Microsoft.AspNetCore.Authentication;
+
+@using System.ComponentModel.DataAnnotations;
+@inject AccountDbContext mcontext
+@inject UserManager<ApplicationUser> userManager
+@inject SignInManager<ApplicationUser> signInManage
+@inject RoleManager<ApplicationRole> roleManager
+@inject Management management
+@inject IAuthenticationService authorizationService
+@using Microsoft.AspNetCore.Authorization;
+@using Erp
